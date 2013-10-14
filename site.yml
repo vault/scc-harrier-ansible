@@ -1,0 +1,10 @@
+---
+- name: Install Computational Nodes
+  hosts: scc
+  user: root
+
+  roles:
+    - ssh-keys
+    #- users
+    #- packages
+
