@@ -1,0 +1,8 @@
+---
+name: Install Basic Packages
+  yum: name="{{ item }}" state=installed
+  with_items:
+    - openssh-clients
+    - htop
+    - vim
+    - "@Development tools"

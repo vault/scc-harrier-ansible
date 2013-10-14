@@ -4,7 +4,7 @@
   user: root
 
   roles:
-    - ssh-keys
-    #- users
-    #- packages
+    - common
+    - users
+    - packages
 

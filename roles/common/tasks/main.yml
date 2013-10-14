@@ -1,0 +1,15 @@
+---
+- copy: src=epel.repo dest=/etc/yum.repos.d/epel.repo
+- copy: src=RPM-GPG-KEY-EPEL-6 dest=/etc/pki/rpm-gpg
+
+- name: Allow wheel to sudo
+  copy: src=sudoers dest=/etc/sudoers validate='visudo -cf %s'
+
+- name: Add user keys to root
+  authorized_key: user=root key="{{ item }}"
+  with_file:
+    - mgabed.pub
+    - mnijohn.pub
+    - seaker.pub
+
+

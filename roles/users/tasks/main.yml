@@ -1,0 +1,26 @@
+---
+- name: Create mgabed
+  user: name=mgabed group=users groups=wheel uid=500
+- name: Create jaleman
+  user: name=jaleman group=users groups=wheel uid=501
+- name: Create seaker
+  user: name=seaker group=users groups=wheel uid=502
+- name: Create johnJoseph
+  user: name=johnJoseph groups=users groups=wheel uid=503
+
+- name: copy over mgabed ssh key
+  authorized_key: user=mgabed key="{{ item }}"
+  with_file:
+     - mgabed.pub
+
+- name: copy over seaker ssh key
+  authorized_key: user=seaker key="{{ item }}"
+  with_file:
+     - seaker.pub
+
+- name: copy over johnJoseph ssh key
+  authorized_key: user=johnJoseph key="{{ item }}"
+  with_file:
+     - mnijohn.pub
+
+
