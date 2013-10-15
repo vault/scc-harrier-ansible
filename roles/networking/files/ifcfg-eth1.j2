@@ -1,0 +1,25 @@
+DEVICE="eth1"
+ONBOOT="yes"
+BOOTPROTO="none"
+
+{% if ansible_hostname == "harrier1" %}
+IPADDR="128.197.115.90"
+{% elif ansible_hostname == "harrier2" %}
+IPADDR="128.197.115.91"
+{% elif ansible_hostname == "harrier3" %}
+IPADDR="128.197.115.92"
+{% elif ansible_hostname == "harrier4" %}
+IPADDR="128.197.115.94"
+{% elif ansible_hostname == "harrier5" %}
+IPADDR="128.197.115.97"
+{% elif ansible_hostname == "harrier6" %}
+IPADDR="128.197.115.99"
+{% elif ansible_hostname == "harrier7" %}
+IPADDR="128.197.115.104"
+{% elif ansible_hostname == "harrier8" %}
+IPADDR="128.197.115.105"
+{% endif %}
+
+NETMASK="255.255.255.0"
+NETWORK="128.197.115.0"
+BROADCAST="128.197.115.255"
