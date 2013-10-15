@@ -6,9 +6,10 @@
     - htop
     - vim
     - bash-completion
-    - "@Development tools"
-    - "@Infiniband support"
+    - @Development tools
+    - @Infiniband support
     - infiniband-diags
+    - man-pages
 
 - name: Enable RDMA service
   service: name=rdma state=started enabled=true
