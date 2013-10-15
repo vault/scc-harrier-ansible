@@ -5,6 +5,9 @@
 - name: Allow wheel to sudo
   copy: src=sudoers dest=/etc/sudoers validate='visudo -cf %s'
 
+- name: copy hosts file
+  copy: src=hosts dest=/etc/hosts
+
 - name: Add user keys to root
   authorized_key: user=root key="{{ item }}"
   with_file:

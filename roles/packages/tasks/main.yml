@@ -11,6 +11,11 @@
     - infiniband-diags
     - man-pages
 
+- name: Install Packages from RPMs
+  yum:  name="{{ }}" state=installed
+  with_items:
+    - rpms/slurm-2.6.3.el6.x86_64.rpm
+
 - name: Enable RDMA service
   service: name=rdma state=started enabled=true
 

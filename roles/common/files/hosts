@@ -1,0 +1,17 @@
+127.0.0.1 localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1       localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+10.0.0.11 harrier1
+10.0.0.12 harrier2
+10.0.0.13 harrier3
+10.0.0.14 harrier4
+10.0.0.15 harrier5
+10.0.0.16 harrier6
+10.0.0.17 harrier7
+10.0.0.18 harrier8
+
+10.0.0.2  eth-switch
+10.0.0.3  ib-switch
+10.0.0.4  pdu1
+10.0.0.5  pdu2
+
