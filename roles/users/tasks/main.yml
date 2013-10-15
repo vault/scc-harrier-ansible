@@ -12,6 +12,7 @@
   authorized_key: user=mgabed key="{{ item }}"
   with_file:
      - mgabed.pub
+     - michael.pub
 
 - name: copy over seaker ssh key
   authorized_key: user=seaker key="{{ item }}"

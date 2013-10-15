@@ -7,4 +7,12 @@
     - common
     - users
     - packages
+    - ganglia
 
+
+- name: Install Head-node only things
+  hosts: scc-head
+  user: root
+  roles:
+    - opensm
+    - gmetad

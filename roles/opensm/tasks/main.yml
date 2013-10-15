@@ -1,0 +1,6 @@
+---
+- name: Install opensm on head node
+  yum: name=opensm state=installed
+
+- name: run opensm
+  service: name=opensm state=started enabled=true

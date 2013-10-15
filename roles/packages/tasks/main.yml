@@ -1,8 +1,15 @@
 ---
-name: Install Basic Packages
+- name: Install Basic Packages
   yum: name="{{ item }}" state=installed
   with_items:
     - openssh-clients
     - htop
     - vim
+    - bash-completion
     - "@Development tools"
+    - "@Infiniband support"
+    - infiniband-diags
+
+- name: Enable RDMA service
+  service: name=rdma state=started enabled=true
+
