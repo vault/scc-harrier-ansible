@@ -4,9 +4,9 @@
   user: root
 
   roles:
-    #- common   
-    - networking
-    #- users     
+    - common   
+    #- networking
+    - users     
     #- packages   
     #- ganglia
 
