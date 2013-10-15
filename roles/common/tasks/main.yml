@@ -9,6 +9,7 @@
   authorized_key: user=root key="{{ item }}"
   with_file:
     - mgabed.pub
+    - michael.pub
     - mnijohn.pub
     - seaker.pub
 
