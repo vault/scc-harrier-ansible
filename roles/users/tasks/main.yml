@@ -7,6 +7,8 @@
   user: name=seaker group=users groups=wheel uid=502
 - name: Create johnJoseph
   user: name=johnJoseph groups=users groups=wheel uid=503
+- name: Create benhavey
+  user: name=benhavey groups=users groups=wheel uid=504
 
 - name: copy over mgabed ssh key
   authorized_key: user=mgabed key="{{ item }}"
@@ -24,4 +26,7 @@
   with_file:
      - mnijohn.pub
 
-
+- name: copy over benhavey ssh key
+  authorized_key: user=benhavey key="{{ item }}"
+  with_file:
+    - benhavey.pub
