@@ -6,16 +6,23 @@
     - htop
     - vim
     - bash-completion
-    - @Development tools
-    - @Infiniband support
+    - "@Development tools"
+    - "@Infiniband support"
     - infiniband-diags
+    - man
     - man-pages
+    - pciutils
+    - wget
+    - ntp
 
-- name: Install Packages from RPMs
-  yum:  name="{{ }}" state=installed
-  with_items:
-    - rpms/slurm-2.6.3.el6.x86_64.rpm
+#- name: Install Packages from RPMs
+  #yum:  name="{{ }}" state=installed
+  #with_items:
+    #- rpms/slurm-2.6.3.el6.x86_64.rpm
 
 - name: Enable RDMA service
   service: name=rdma state=started enabled=true
+
+- name: Enable NTP
+  service: name=ntpd state=started enabled=true
 
