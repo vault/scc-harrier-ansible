@@ -10,6 +10,15 @@
 10.0.0.17 harrier7
 10.0.0.18 harrier8
 
+10.0.0.111 harrier1-ipmi
+10.0.0.112 harrier2-ipmi
+10.0.0.113 harrier3-ipmi
+10.0.0.114 harrier4-ipmi
+10.0.0.115 harrier5-ipmi
+10.0.0.116 harrier6-ipmi
+10.0.0.117 harrier7-ipmi
+10.0.0.118 harrier8-ipmi
+
 10.0.0.2  eth-switch
 10.0.0.3  ib-switch
 10.0.0.4  pdu1
