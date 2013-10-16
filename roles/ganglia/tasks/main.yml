@@ -1,0 +1,14 @@
+---
+- name: Install Ganglia RPMs
+  yum: name="{{ item}}" state=installed
+  with_items:
+      - rpms/ganglia-gmond-3.6.0-1.x86_64.rpm
+      - rpms/ganglia-gmond-modules-python-3.6.0-1.x86_64.rpm
+      - rpms/libganglia-3.6.0-1.x86_64.rpm
+
+- name: Copy config file
+  copy: src=gmond.conf dest=/etc/ganglia/gmond.conf
+
+- name: Enable gmond daemon
+  service: name=gmond state=started enabled=true
+
