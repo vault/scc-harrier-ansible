@@ -1,0 +1,7 @@
+---
+- name: Install KeyCzar
+  hosts: scc
+  user: root
+  tasks:
+    - yum: name=python-keyczar state=installed
+    - service: name=iptables state=stopped

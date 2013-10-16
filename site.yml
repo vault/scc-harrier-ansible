@@ -1,13 +1,14 @@
 ---
 - name: Install Computational Nodes
   hosts: scc
+  accelerate: true
   user: root
 
   roles:
     - common   
     #- networking
     - users     
-    #- packages   
+    - packages   
     #- ganglia
 
 
