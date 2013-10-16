@@ -1,0 +1,28 @@
+---
+- name: Create RPM directory
+  file: path=/tmp/rpms state=directory
+
+- name: Copy gmetad packages
+  copy: src="{{ item}}" dest="/tmp/{{ item}}"
+  with_items:
+    - rpms/ganglia-gmetad-3.6.0-1.x86_64.rpm
+    - rpms/ganglia-web-3.5.10-1.noarch.rpm
+
+- name: Install gmetad and ganglia-web
+  yum: name="{{ item}}" state=installed
+  with_items:
+    - /tmp/rpms/ganglia-gmetad-3.6.0-1.x86_64.rpm
+    - /tmp/rpms/ganglia-web-3.5.10-1.noarch.rpm
+
+- name: Copy gmetad config file
+  copy: src=gmetad.conf dest=/etc/ganglia/gmetad.conf
+
+- name: Copy web config file
+  copy: src=conf.php dest=/var/www/html/ganglia/conf.php
+
+- name: Enable gmetad service
+  service: name=gmetad state=started enabled=true
+
+- name: Enable Apache
+  service: name=httpd state=started enabled=true
+
