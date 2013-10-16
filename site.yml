@@ -9,7 +9,7 @@
     #- networking
     - users     
     - packages   
-    #- ganglia
+    - ganglia
 
 
 - name: Install Head-node only things
@@ -17,4 +17,4 @@
   user: root
   roles:
     - opensm
-    #- gmetad
+    - gmetad
