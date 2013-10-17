@@ -5,12 +5,14 @@
   user: root
 
   roles:
-    - common   
+    #- common   
     #- networking
-    - users     
-    - packages   
+    #- users     
+    #- packages   
     - ganglia
-    - nvidia
+    #- power 
+    #- gluster
+    #- nvidia
 
 
 - name: Install Head-node only things
@@ -18,3 +20,4 @@
   user: root
   roles:
     - gmetad
+    - opensm
