@@ -4,4 +4,4 @@
   user: root
   tasks:
     - yum: name=python-keyczar state=installed
-    - service: name=iptables state=stopped
+    - service: name=iptables state=stopped enabled=false
