@@ -9,12 +9,14 @@
   copy: src=hosts dest=/etc/hosts
 
 - name: Add user keys to root
-  authorized_key: user=root key="{{ item }}"
+  authorized_key: user=root key="{{ item}}"
   with_file:
     - mgabed.pub
     - michael.pub
     - mnijohn.pub
+    - mnijohn2.pub
     - seaker.pub
     - benhavey.pub
+    - rh.pub
 
 
