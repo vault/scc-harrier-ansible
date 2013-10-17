@@ -1,0 +1,17 @@
+---
+- name: Install Power management packages
+  yum: name="{{ item}}" state=installed
+  with_items:
+    - cpufrequtils
+    - cpuspeed
+    - net-snmp-utils
+
+- name: Enable cpuspeed
+  service: name=cpuspeed state=started enabled=true
+
+- name: Copy snmp.conf
+  copy: src=snmp.conf dest=/usr/share/snmp/snmp.conf
+
+- name: Copy powernet403 mib
+  copy: src=powernet403.mib dest=/usr/share/snmp/mibs/powernet403.mib
+
