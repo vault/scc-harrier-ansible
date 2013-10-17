@@ -1,0 +1,42 @@
+---
+- name: Install gluster repo
+  get_url: url=http://download.gluster.org/pub/gluster/glusterfs/LATEST/CentOS/glusterfs-epel.repo dest=/etc/yum.repos.d/glusterfs-epel.repo
+
+- name: Install requisite packages
+  yum: name="{{ item}}" state=installed
+  with_items:
+      - gdisk
+      - xfsprogs
+      - glusterfs
+      - glusterfs-fuse
+      - glusterfs-server
+      - glusterfs-rdma
+
+- name: Ensure disks are formatted correctly
+  filesystem: dev=/dev/sdb1 fstype=xfs opts="-i size=512"
+
+- name: Create mount directory
+  file: path=/export/sdb1 state=directory
+
+- name: Mount gluster
+  mount: fstype=xfs name=/export/sdb1 src=/dev/sdb1 state=mounted
+
+- name: Create gluster bricks
+  file: path="/export/sdb1/{{ item}}" state=directory
+  with_items:
+    - home
+    - data
+
+
+- name: Run glusterd
+  service: name=glusterd state=started enabled=true
+
+- name: Mount gluster home
+  mount: fstype="glusterfs" src="harrier1:/gv_home" name=/home state=mounted
+
+- name: Create data mountpoint
+  file: path=/opt/vol state=directory
+
+- name: Mount gluster data
+  mount: fstype="glusterfs" src="harrier1:/gv_data" name=/opt/vol state=mounted
+
