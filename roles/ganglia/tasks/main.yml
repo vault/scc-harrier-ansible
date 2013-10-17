@@ -22,3 +22,12 @@
 - name: Enable gmond daemon
   service: name=gmond state=started enabled=true
 
+- name: Copy ib_perf.py
+  copy: src=ib_perf.py dest=/usr/sbin/ib_perf.py mode=755
+
+- name: Copy ib_perf rc file
+  copy: src=ib_perf dest=/etc/init.d/ib_perf mode=755
+
+- name: Enable and start ib_perf service
+  service: name=ib_perf state=started enabled=true
+

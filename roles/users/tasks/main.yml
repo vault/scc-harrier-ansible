@@ -6,27 +6,35 @@
 - name: Create seaker
   user: name=seaker group=users groups=wheel uid=502
 - name: Create johnJoseph
-  user: name=johnJoseph groups=users groups=wheel uid=503
+  user: name=johnJoseph group=users groups=wheel uid=503
 - name: Create benhavey
-  user: name=benhavey groups=users groups=wheel uid=504
+  user: name=benhavey group=users groups=wheel uid=504
+- name: Create rh
+  user: name=rh group=users groups=wheel uid=505
 
 - name: copy over mgabed ssh key
-  authorized_key: user=mgabed key="{{ item }}"
+  authorized_key: user=mgabed key="{{ item}}"
   with_file:
      - mgabed.pub
      - michael.pub
 
 - name: copy over seaker ssh key
-  authorized_key: user=seaker key="{{ item }}"
+  authorized_key: user=seaker key="{{ item}}"
   with_file:
      - seaker.pub
 
 - name: copy over johnJoseph ssh key
-  authorized_key: user=johnJoseph key="{{ item }}"
+  authorized_key: user=johnJoseph key="{{ item}}"
   with_file:
      - mnijohn.pub
+     - mnijohn2.pub
 
 - name: copy over benhavey ssh key
-  authorized_key: user=benhavey key="{{ item }}"
+  authorized_key: user=benhavey key="{{ item}}"
   with_file:
     - benhavey.pub
+
+- name: copy over rh ssh key
+  authorized_key: user=rh key="{{ item}}"
+  with_file:
+    - rh.pub

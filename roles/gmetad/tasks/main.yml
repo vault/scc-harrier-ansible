@@ -26,3 +26,8 @@
 - name: Enable Apache
   service: name=httpd state=started enabled=true
 
+- name: Install Custom Graphs
+  copy: src="graph.d/{{ item}}" dest="/var/www/html/ganglia/graph.d/{{ item}}"
+  with_items:
+    - ib_network_report.json
+    - ib_packet_report.json
