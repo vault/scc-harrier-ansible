@@ -5,13 +5,14 @@
   user: root
 
   roles:
-    #- common   
+    - common   
     #- networking
     #- users     
-    #- packages   
-    - ganglia
+    - packages   
+    #- ganglia
     #- power 
     #- gluster
+    #- slurm
     #- nvidia
 
 
