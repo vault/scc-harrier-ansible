@@ -1,6 +1,6 @@
 ---
 - name: Install Basic Packages
-  yum: name="{{ item }}" state=installed
+  yum: name="{{ item}}" state=installed
   with_items:
     - openssh-clients
     - htop
@@ -14,6 +14,9 @@
     - pciutils
     - wget
     - ntp
+    - mvapich2-devel
+    - lapack-devel
+
 
 #- name: Install Packages from RPMs
   #yum:  name="{{ }}" state=installed
