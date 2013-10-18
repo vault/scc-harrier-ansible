@@ -1,36 +1,39 @@
 ---
-- name: Create RPM directory
-  file: path=/tmp/rpms state=directory
+#- name: Create RPM directory
+  #file: path=/tmp/rpms state=directory
 
-- name: Copy gmetad packages
-  copy: src="{{ item}}" dest="/tmp/{{ item}}"
-  with_items:
-    - rpms/cuda-repo-rhel6-5.5-0.x86_64.rpm
+#- name: Copy gmetad packages
+  #copy: src="{{ item}}" dest="/tmp/{{ item}}"
+  #with_items:
+    #- rpms/cuda-repo-rhel6-5.5-0.x86_64.rpm
 
-- name: Enable cuda repo
-  yum: name=/tmp/rpms/cuda-repo-rhel6-5.5-0.x86_64.rpm state=installed
+#- name: Enable cuda repo
+  #yum: name=/tmp/rpms/cuda-repo-rhel6-5.5-0.x86_64.rpm state=installed
 
-- name: Clear yum caches
-  shell: yum clean expire-cache
+#- name: Clear yum caches
+  #shell: yum clean expire-cache
 
-- name: Install Drivers and Cuda
-  yum: name="{{ item}}" state=installed
-  with_items:
-    - xorg-x11-drv-nvidia
-    - cuda-command-line-tools-5-5
-    - cuda-headers-5-5
-    - cuda-misc-5-5
-    - cuda-extra-libs-5-5
+#- name: Install Drivers and Cuda
+  #yum: name="{{ item}}" state=installed
+  #with_items:
+    #- xorg-x11-drv-nvidia
+    #- cuda-command-line-tools-5-5
+    #- cuda-headers-5-5
+    #- cuda-misc-5-5
+    #- cuda-extra-libs-5-5
 
-- name: Ensure kernel is up to date
-  yum: name=kernel state=latest
+#- name: Ensure kernel is up to date
+  #yum: name=kernel state=latest
 
-- name: Load nvidia module
-  shell: modprobe nvidia
+#- name: Load nvidia module
+  #shell: modprobe nvidia
 
-- name: List GPUs
-  shell: nvidia-smi -L
+#- name: List GPUs
+  #shell: nvidia-smi -L
 
-- name: Enable persistence mode
-  shell: nvidia-smi -pm 1
+#- name: Enable persistence mode
+  #shell: nvidia-smi -pm 1
+
+- name: Put in paths
+  copy: src=cuda.sh dest=/etc/profile.d/cuda.sh
 
