@@ -16,6 +16,8 @@
     - ntp
     - mvapich2-devel
     - lapack-devel
+    - hwloc-devel
+    - netcdf-devel
 
 
 #- name: Install Packages from RPMs
