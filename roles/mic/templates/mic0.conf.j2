@@ -1,0 +1,50 @@
+Version 0 7
+
+# Include configuration common to all MIC cards
+Include default.conf
+
+# Include all additional functionality configuration files by default
+Include "conf.d/*.conf"
+
+# Startup services from base package
+Service fileperms 1 99 on
+Service network 21 79 on
+Service sshd 80 20 on
+Service pm 90 10 on
+Service blcr 95 5 off
+Service mictune 99 1 on
+
+# Unique per card files for embedded Linux file system
+MicDir /opt/intel/mic/filesystem/mic0
+/opt/intel/mic/filesystem/mic0.filelist
+
+# Hostname to assign to MIC card
+Hostname "{{ ansible_hostname }}-mic0"
+
+MacAddrs Serial
+
+Network StaticPair 172.31.0.1 172.31.0.254 yes 24
+
+# MIC OS Verbose messages to console
+VerboseLogging Disabled 
+# MIC OS image
+OSimage /lib/firmware/mic/uos.img
+
+# Boot MIC card when MPSS stack is started
+BootOnStart Enabled
+
+# MIC User Authentication
+# This parameter depricates the UserIDs paramter.  If both are
+# specified UserAuthentication will override UserIDs
+UserAuthentication Local 500 65000
+
+# Root device for MIC card
+RootDevice ramfs /opt/intel/mic/filesystem/mic0.image
+
+# Control card power state setting
+# cpufreq: P state
+# corec6: Core C6 state
+# pc3: Package C3 state
+# pc6: Package C6 state
+PowerManagement "cpufreq_on;corec6_on;pc3_on;pc6_on"
+

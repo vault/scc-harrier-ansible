@@ -1,7 +1,7 @@
 ---
 - name: Install Computational Nodes
   hosts: scc
-  accelerate: true
+  #accelerate: true
   user: root
 
   roles:
@@ -10,9 +10,10 @@
     #- users     
     #- packages   
     #- ganglia
-    - power 
+    #- power 
     #- gluster
     #- slurm
+    - mic
 
 
 - name: Install Head-node only things

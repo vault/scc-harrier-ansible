@@ -1,0 +1,29 @@
+---
+- name: Install MIC packages
+  yum: name="{{ item}}" state=installed
+  with_items:
+    - /opt/vol/rpms/intel-mic-flash-2.1.386-3.2.6.32-358.el6.x86_64.rpm
+    - /opt/vol/rpms/intel-mic-kmod-2.1.6720-19.2.6.32.358.el6.x86_64.rpm
+    - /opt/vol/rpms/intel-mic-2.1.6720-19.2.6.32-358.el6.x86_64.rpm
+    - /opt/vol/rpms/intel-mic-micmgmt-2.1.6720-19.2.6.32.358.el6.x86_64.rpm
+    - /opt/vol/rpms/intel-mic-gpl-2.1.6720-19.el6.x86_64.rpm
+    - /opt/vol/rpms/intel-mic-sysmgmt-2.1.6720-19.2.6.32-358.el6.x86_64.rpm
+    - /opt/vol/rpms/intel-mic-gdb-2.1.6720-19.2.6.32-358.el6.x86_64.rpm
+    - /opt/vol/rpms/intel-mic-mpm-2.1.6720-19.2.6.32-358.el6.x86_64.rpm
+    - /opt/vol/rpms/intel-mic-cdt-2.1.6720-19.2.6.32-358.el6.x86_64.rpm
+
+- name: Shutdown MPSS
+  service: name=mpss state=stopped
+
+- name: Initialize Config
+  shell: micctrl --initdefaults creates=/etc/sysconfig/mic/default.conf
+
+- name: Build Template
+  template: src=mic0.conf.j2 dest=/etc/sysconfig/mic/mic0.conf
+
+- name: Reset Mic Config
+  shell: micctrl --resetconfig
+
+- name: Enable MPSS Daemon
+  service: name=mpss state=started enabled=true
+
