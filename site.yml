@@ -5,15 +5,14 @@
   user: root
 
   roles:
-    - common   
+    #- common   
     #- networking
     #- users     
-    - packages   
+    #- packages   
     #- ganglia
-    #- power 
+    - power 
     #- gluster
     #- slurm
-    #- nvidia
 
 
 - name: Install Head-node only things
@@ -21,4 +20,10 @@
   user: root
   roles:
     - gmetad
-    - opensm
+    #- opensm
+
+- name: Install GPU only things
+  hosts: scc-gpu
+  user: root
+  roles:
+    - nvidia
