@@ -1,39 +1,49 @@
 ---
-#- name: Create RPM directory
-  #file: path=/tmp/rpms state=directory
+- name: Create RPM directory
+  file: path=/tmp/rpms state=directory
 
-#- name: Copy gmetad packages
-  #copy: src="{{ item}}" dest="/tmp/{{ item}}"
-  #with_items:
-    #- rpms/cuda-repo-rhel6-5.5-0.x86_64.rpm
+- name: Copy nvidia packages
+  copy: src="{{ item}}" dest="/tmp/{{ item}}"
+  with_items:
+    - rpms/cuda-repo-rhel6-5.5-0.x86_64.rpm
 
-#- name: Enable cuda repo
-  #yum: name=/tmp/rpms/cuda-repo-rhel6-5.5-0.x86_64.rpm state=installed
+- name: Enable cuda repo
+  yum: name=/tmp/rpms/cuda-repo-rhel6-5.5-0.x86_64.rpm state=installed
 
 #- name: Clear yum caches
   #shell: yum clean expire-cache
 
-#- name: Install Drivers and Cuda
-  #yum: name="{{ item}}" state=installed
-  #with_items:
-    #- xorg-x11-drv-nvidia
-    #- cuda-command-line-tools-5-5
-    #- cuda-headers-5-5
-    #- cuda-misc-5-5
-    #- cuda-extra-libs-5-5
+- name: Install Drivers and Cuda
+  yum: name="{{ item}}" state=installed
+  with_items:      
+    - xorg-x11-drv-nvidia
+    - xorg-x11-drv-nvidia-devel
+    - cuda-command-line-tools-5-5
+    - cuda-headers-5-5
+    - cuda-misc-5-5 
+    - cuda-extra-libs-5-5
 
 #- name: Ensure kernel is up to date
   #yum: name=kernel state=latest
 
+
+- name: Put in paths
+  copy: src=cuda.sh dest=/etc/profile.d/cuda.sh
+
+- get_url: url=https://pypi.python.org/packages/source/n/nvidia-ml-py/nvidia-ml-py-4.304.04.tar.gz dest=/tmp/nvidia-ml-py.tar.gz
+- shell: create=/tmp/nvidia-ml-py chdir=/tmp tar -xvzf /tmp/nvidia-ml-py.tar.gz 
+- shell: chdir=/tmp/nvidia-ml-py-4.304.04 python setup.py install
+- copy: src=nvidia.py dest=/usr/lib64/ganglia/python_modules
+- copy: src=nvidia.pyconf dest=/etc/ganglia/conf.d/nvidia.pyconf
+- lineinfile: dest=/etc/init.d/gmond regexp="^export LD_LIBRARY_PATH" insertafter="RETVAL=0" line="export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/nvidia"
+  #notify: restart gmond
+
 #- name: Load nvidia module
   #shell: modprobe nvidia
 
-#- name: List GPUs
+#- name: List GPUs    
   #shell: nvidia-smi -L
 
 #- name: Enable persistence mode
   #shell: nvidia-smi -pm 1
-
-- name: Put in paths
-  copy: src=cuda.sh dest=/etc/profile.d/cuda.sh
 

@@ -26,8 +26,21 @@
 - name: Enable Apache
   service: name=httpd state=started enabled=true
 
-- name: Install Custom Graphs
+- name: Install IB Custom Graphs
   copy: src="graph.d/{{ item}}" dest="/var/www/html/ganglia/graph.d/{{ item}}"
   with_items:
     - ib_network_report.json
     - ib_packet_report.json
+
+- name: Install GPU graphs
+  copy: src="nvidia/{{ item}}" dest="/var/www/html/ganglia/graph.d/{{ item}}"
+  with_items:
+    - gpu0_mem_report.php
+    - gpu_core_speed_report.php
+    - gpu_mem_report.php
+    - gpu_mem_speed_report.php
+    - gpu_mem_util_report.php
+    - gpu_sm_speed_report.php
+    - gpu_temp_report.php
+    - gpu_util_report.php
+
