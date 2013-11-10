@@ -8,23 +8,23 @@
     #- common   
     #- networking
     #- users     
-    #- packages   
+    - packages   
     #- ganglia
     #- power 
     #- gluster
     #- slurm
-    - mic
+    #- mic
 
 
 - name: Install Head-node only things
   hosts: scc-head
   user: root
   roles:
-    - gmetad
+    #- gmetad
     #- opensm
 
 - name: Install GPU only things
   hosts: scc-gpu
   user: root
   roles:
-    - nvidia
+    #- nvidia

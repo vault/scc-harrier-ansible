@@ -32,11 +32,11 @@
   service: name=glusterd state=started enabled=true
 
 - name: Mount gluster home
-  mount: fstype="glusterfs" src="harrier1:/gv_home" name=/home state=mounted
+  mount: fstype="glusterfs" src="localhost:/gv_home" name=/home state=mounted
 
 - name: Create data mountpoint
   file: path=/opt/vol state=directory
 
 - name: Mount gluster data
-  mount: fstype="glusterfs" src="harrier1:/gv_data" name=/opt/vol state=mounted
+  mount: fstype="nfs" src="localhost:/gv_data" name=/opt/vol state=mounted
 

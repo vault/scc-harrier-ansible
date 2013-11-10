@@ -18,6 +18,8 @@
     - lapack-devel
     - hwloc-devel
     - netcdf-devel
+    - nano
+    - bridge-utils
 
 
 #- name: Install Packages from RPMs
@@ -25,9 +27,9 @@
   #with_items:
     #- rpms/slurm-2.6.3.el6.x86_64.rpm
 
-- name: Enable RDMA service
-  service: name=rdma state=started enabled=true
+#- name: Enable RDMA service
+  #service: name=rdma state=started enabled=true
 
-- name: Enable NTP
-  service: name=ntpd state=started enabled=true
+#- name: Enable NTP
+  #service: name=ntpd state=started enabled=true
 
