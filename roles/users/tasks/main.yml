@@ -11,6 +11,10 @@
   user: name=benhavey group=users groups=wheel uid=504
 - name: Create rh
   user: name=rh group=users groups=wheel uid=505
+- name: Create nhentschel
+  user: name=nhentschel group=users uid=506
+- name: Create jnfurst
+  user: name=jnfurst group=users groups=wheel uid=507
 
 - name: copy over mgabed ssh key
   authorized_key: user=mgabed key="{{ item}}"
@@ -19,9 +23,11 @@
      - michael.pub
 
 - name: copy over jaleman ssh key
-  authorized_key: user=mgabed key="{{ item}}"
+  authorized_key: user=jaleman key="{{ item}}"
   with_file:
      - jaleman.pub
+     - jaleman2.pub
+     - jaleman3.pub
 
 - name: copy over seaker ssh key
   authorized_key: user=seaker key="{{ item}}"
@@ -33,6 +39,8 @@
   with_file:
      - mnijohn.pub
      - mnijohn2.pub
+     - mnijohn3.pub
+     - mnijohn4.pub
 
 - name: copy over benhavey ssh key
   authorized_key: user=benhavey key="{{ item}}"
@@ -43,3 +51,13 @@
   authorized_key: user=rh key="{{ item}}"
   with_file:
     - rh.pub
+
+- name: copy over nhentschel ssh key
+  authorized_key: user=nhentschel key="{{ item}}"
+  with_file:
+    - nhentschel.pub
+
+- name: copy over jnfurst ssh key
+  authorized_key: user=jnfurst key="{{ item}}"
+  with_file:
+    - jnfurst.pub
