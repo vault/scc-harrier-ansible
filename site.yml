@@ -5,10 +5,10 @@
   user: root
 
   roles:
-    #- common   
+    - common   
     #- networking
     #- users     
-    - packages   
+    #- packages   
     #- ganglia
     #- power 
     #- gluster

@@ -2,24 +2,23 @@ DEVICE="eth1"
 ONBOOT="yes"
 BOOTPROTO="none"
 {% if ansible_hostname == "harrier1" %}
-IPADDR="128.197.115.90"
+IPADDR="10.0.7.151"
 {% elif ansible_hostname == "harrier2" %}
-IPADDR="128.197.115.91"
+IPADDR="10.0.7.152"
 {% elif ansible_hostname == "harrier3" %}
-IPADDR="128.197.115.92"
+IPADDR="10.0.7.153"
 {% elif ansible_hostname == "harrier4" %}
-IPADDR="128.197.115.94"
+IPADDR="10.0.7.154"
 {% elif ansible_hostname == "harrier5" %}
-IPADDR="128.197.115.97"
+IPADDR="10.0.7.155"
 {% elif ansible_hostname == "harrier6" %}
-IPADDR="128.197.115.99"
+IPADDR="10.0.7.156"
 {% elif ansible_hostname == "harrier7" %}
-IPADDR="128.197.115.104"
+IPADDR="10.0.7.157"
 {% elif ansible_hostname == "harrier8" %}
-IPADDR="128.197.115.106"
+IPADDR="10.0.7.158"
 {% endif %}
 NETMASK="255.255.255.0"
-NETWORK="128.197.115.0"
-BROADCAST="128.197.115.255"
-GATEWAY="128.197.115.1"
+NETWORK="10.0.7.1"
+BROADCAST="10.0.7.255"
 MTU=9000
